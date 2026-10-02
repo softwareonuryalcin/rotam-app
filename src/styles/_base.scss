@@ -1,0 +1,61 @@
+@use 'sass:map';
+@use 'tokens' as *;
+
+:root { @include light-theme; color-scheme: light; }
+:root[data-theme='dark'] { @include dark-theme; color-scheme: dark; }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(60vw 50vh at 0% 0%, var(--bg-mesh-1), transparent 70%),
+    radial-gradient(50vw 50vh at 100% 10%, var(--bg-mesh-2), transparent 70%),
+    radial-gradient(60vw 60vh at 50% 100%, var(--bg-mesh-3), transparent 70%),
+    var(--bg);
+  background-attachment: fixed;
+  transition: background-color 0.3s, color 0.3s;
+  -webkit-font-smoothing: antialiased;
+
+  // Grenli doku katmanı
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: var(--noise-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+#root { position: relative; z-index: 1; }
+
+h1, h2, h3, h4, p { margin: 0; }
+button, input, select { font: inherit; color: inherit; }
+ul { list-style: none; margin: 0; padding: 0; }
+
+.muted { color: var(--muted); font-size: 0.85rem; }
+
+.splash {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+  justify-items: center;
+  color: var(--muted);
+  &--error { color: map.get($status-colors, skipped); }
+}
+
+.spinner {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } }

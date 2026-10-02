@@ -1,0 +1,29 @@
+@use 'tokens' as *;
+
+.app {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: grid;
+  gap: $gap;
+  @include md { padding: 1.5rem; }
+}
+
+.layout {
+  display: grid;
+  gap: $gap;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+
+  @include lg { grid-template-columns: minmax(0, 1fr) 380px; }
+
+  &__main, &__side { display: grid; gap: $gap; min-width: 0; }
+  &__side { @include lg { position: sticky; top: 1rem; } }
+}
+
+.footer {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+  padding: 1rem 0 2rem;
+}

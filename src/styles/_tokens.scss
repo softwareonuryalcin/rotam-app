@@ -1,0 +1,51 @@
+// Tasarım değişkenleri — tema renkleri CSS custom property olarak tanımlanır.
+$radius: 18px;
+$radius-sm: 10px;
+$gap: 1.25rem;
+
+$bp-md: 760px;
+$bp-lg: 1100px;
+
+@mixin md { @media (min-width: $bp-md) { @content; } }
+@mixin lg { @media (min-width: $bp-lg) { @content; } }
+
+$status-colors: (
+  planned: #6c7cff,
+  visited: #1fbf75,
+  skipped: #ef5a6f,
+  postponed: #f5a524,
+);
+
+@mixin light-theme {
+  --bg: #eef1f8;
+  --bg-mesh-1: rgba(108, 124, 255, 0.22);
+  --bg-mesh-2: rgba(31, 191, 117, 0.16);
+  --bg-mesh-3: rgba(245, 165, 36, 0.16);
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-solid: #ffffff;
+  --surface-2: rgba(15, 23, 42, 0.04);
+  --border: rgba(15, 23, 42, 0.09);
+  --text: #141a2e;
+  --muted: #5d6680;
+  --accent: #5b5bf0;
+  --accent-2: #00b4d8;
+  --shadow: 0 10px 30px -12px rgba(30, 40, 80, 0.25);
+  --noise-opacity: 0.05;
+}
+
+@mixin dark-theme {
+  --bg: #0b0e18;
+  --bg-mesh-1: rgba(108, 124, 255, 0.25);
+  --bg-mesh-2: rgba(0, 180, 216, 0.14);
+  --bg-mesh-3: rgba(239, 90, 111, 0.12);
+  --surface: rgba(22, 27, 44, 0.66);
+  --surface-solid: #161b2c;
+  --surface-2: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #e8ecf8;
+  --muted: #8d97b5;
+  --accent: #8b8bff;
+  --accent-2: #3dd6f5;
+  --shadow: 0 14px 40px -14px rgba(0, 0, 0, 0.7);
+  --noise-opacity: 0.08;
+}
